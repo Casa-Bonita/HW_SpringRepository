@@ -30,4 +30,20 @@ public class PassportService {
         passportRepository.delete(passport);
     }
 
+    public List<Passport> getPassportBySeries (String series){
+        return passportRepository.getPassportBySeries (series);
+    }
+
+    public Passport getPassportBySeriesAndNumber (String series, int number){
+        return passportRepository.getPassportBySeriesAndNumber(series, number);
+    }
+
+    public Passport getPassportByNumberAndCountry (int number, String series){
+        return passportRepository.getPassportByNumberAndCountry(number, series);
+    }
+
+    public List<Passport> getPassportByNumberAndNumber(int numberOne, int numberTwo){
+        return passportRepository.getPassportByNumberAndNumber(numberOne, numberTwo);
+    }
+
 }
