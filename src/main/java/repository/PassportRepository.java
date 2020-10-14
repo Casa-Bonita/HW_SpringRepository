@@ -13,5 +13,5 @@ public interface PassportRepository extends CrudRepository<Passport, Integer> {
 
     Passport getPassportByNumberAndCountry (int number, String series);
 
-    List<Passport> getPassportByNumberAndNumber (int numberOne, int numberTwo);
+    List<Passport> getPassportByNumberOrNumber (int numberOne, int numberTwo);
 }

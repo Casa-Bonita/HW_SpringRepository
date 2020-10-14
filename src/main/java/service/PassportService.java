@@ -42,8 +42,8 @@ public class PassportService {
         return passportRepository.getPassportByNumberAndCountry(number, series);
     }
 
-    public List<Passport> getPassportByNumberAndNumber(int numberOne, int numberTwo){
-        return passportRepository.getPassportByNumberAndNumber(numberOne, numberTwo);
+    public List<Passport> getPassportByNumberOrNumber(int numberOne, int numberTwo){
+        return passportRepository.getPassportByNumberOrNumber(numberOne, numberTwo);
     }
 
 }

@@ -4,7 +4,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import service.ClientService;
 import service.PassportService;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -31,9 +30,9 @@ public class Main {
         //ClientService service = context.getBean(ClientService.class);
 
         String input = "";
-        while(!input.equals("7")){
+        while(!input.equals("10")){
             System.out.println("1. Create.");
-            System.out.println("2. Read.");
+            System.out.println("2. Read All.");
             System.out.println("3. Read By Id.");
             System.out.println("4. Update.");
             System.out.println("5. Delete.");
@@ -44,7 +43,7 @@ public class Main {
             System.out.println("10. Exit.");
 
             input = scn.nextLine();
-            if(input.equals("10")){
+            if(input.equals("1")){
                 System.out.println("1. Create.");
 
                 service.save(new Passport("AA", 123, "Ivan", 1980, "Russia"));
@@ -53,11 +52,17 @@ public class Main {
                 service.save(new Passport("DD", 147, "Anna", 1983, "France"));
                 service.save(new Passport("EE", 258, "Oleg", 1984, "Russia"));
                 service.save(new Passport("FF", 369, "Irina", 1985, "Japan"));
+//                service.save(new Passport("AA", 123, "Patrick", 1980, "Russia"));
+//                service.save(new Passport("BB", 456, "George", 1981, "Japan"));
+//                service.save(new Passport("CC", 789, "Bill", 1982, "Russia"));
+//                service.save(new Passport("DD", 147, "Susan", 1983, "France"));
+//                service.save(new Passport("EE", 258, "John", 1984, "Russia"));
+//                service.save(new Passport("FF", 369, "William", 1985, "Japan"));
                 listPassport = service.getAll();
             }
 
             else if(input.equals("2")){
-                System.out.println("2. Read.");
+                System.out.println("2. Read All.");
 
                 listPassport = service.getAll();
                 listPassport.stream()
@@ -68,7 +73,7 @@ public class Main {
             else if(input.equals("3")){
                 System.out.println("3. Read By Id.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -86,7 +91,7 @@ public class Main {
             else if(input.equals("4")){
                 System.out.println("4. Update.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -130,7 +135,7 @@ public class Main {
             else if(input.equals("5")){
                 System.out.println("5. Delete.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -158,6 +163,7 @@ public class Main {
                 }
 
                 System.out.println("Паспорта после удаления:");
+                listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
 
@@ -167,7 +173,7 @@ public class Main {
 
                 System.out.println("6. Get List Of Passport By Series.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -185,7 +191,7 @@ public class Main {
 
                 System.out.println("7. Get Passport By Series And Number.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -206,7 +212,7 @@ public class Main {
 
                 System.out.println("8. Get Passport By Number And Country.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -225,9 +231,9 @@ public class Main {
 
             else if(input.equals("9")){
 
-                System.out.println("9. Get List Of Passport By Number1 And Number2.");
+                System.out.println("9. Get List Of Passport By Number1 Or Number2.");
 
-                System.out.println("Паспорта, имещиеся в таблице:");
+                System.out.println("Паспорта, имеющиеся в таблице:");
                 listPassport = service.getAll();
                 listPassport.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
@@ -240,8 +246,8 @@ public class Main {
                 temp = scn.nextLine();
                 int numberTwo = Integer.parseInt(temp);
 
-                List<Passport> listPassportByNumberAndNumber = service.getPassportByNumberAndNumber(numberOne, numberTwo);
-                listPassportByNumberAndNumber.stream()
+                List<Passport> listPassportByNumberOrNumber = service.getPassportByNumberOrNumber(numberOne, numberTwo);
+                listPassportByNumberOrNumber.stream()
                         .forEach(x -> System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s %n", x.getId(), x.getSeries(), x.getNumber(), x.getHolderName(), x.getYear(), x.getCountry()));
 
             }

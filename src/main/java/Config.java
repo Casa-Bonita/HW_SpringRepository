@@ -18,9 +18,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource("classpath:hibernate.properties")
-@EnableJpaRepositories(basePackages = "src.main.java.repository")
-@ComponentScan(basePackages = "src.main.java.service")
+@PropertySource("classpath:application.properties")
+@EnableJpaRepositories(basePackages = "repository")
+@ComponentScan(basePackages = "service")
 public class Config {
 
     @Autowired
@@ -31,7 +31,7 @@ public class Config {
 
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(restDataSource());
-        em.setPackagesToScan(new String[]{"src.main.java.entity"});
+        em.setPackagesToScan(new String[]{"entity"});
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -63,7 +63,7 @@ public class Config {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.show_sql", "false");
 
         return hibernateProperties;
     }
